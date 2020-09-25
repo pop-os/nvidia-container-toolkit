@@ -5,3 +5,8 @@
 
 %:
 	dh $@
+
+
+override_dh_auto_build:
+	cp config/config.toml.ubuntu config.toml
+	GOCACHE="$$(pwd)/gocache" GOPATH="$$(pwd)/gopath" make binary
