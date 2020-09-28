@@ -1,7 +1,7 @@
 Source: nvidia-container-toolkit
 Section: utils
 Priority: optional
-Maintainer: NVIDIA CORPORATION <cudatools@nvidia.com>
+Maintainer: System76 <info@system76.com>
 Standards-Version: 3.9.8
 Homepage: https://github.com/NVIDIA/nvidia-container-runtime/wiki
 Vcs-Git: https://github.com/NVIDIA/nvidia-container-runtime
