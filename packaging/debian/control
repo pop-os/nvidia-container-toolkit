@@ -1,5 +1,5 @@
 Source: nvidia-container-toolkit
-Section: @SECTION@utils
+Section: utils
 Priority: optional
 Maintainer: NVIDIA CORPORATION <cudatools@nvidia.com>
 Standards-Version: 3.9.8
