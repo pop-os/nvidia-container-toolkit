@@ -6,7 +6,11 @@
 %:
 	dh $@
 
-
 override_dh_auto_build:
+	# Fixes build on bionic; doesn't seem to be needed on focal
+	mkdir -p gopath/src/github.com/NVIDIA/nvidia-container-toolkit
+	ln -s "$$(pwd)/pkg" gopath/src/github.com/NVIDIA/nvidia-container-toolkit
+	GOCACHE="$$(pwd)/gocache" GOPATH="$$(pwd)/gopath" go get github.com/NVIDIA/nvidia-container-toolkit/pkg
+
 	cp config/config.toml.ubuntu config.toml
 	GOCACHE="$$(pwd)/gocache" GOPATH="$$(pwd)/gopath" make binary
