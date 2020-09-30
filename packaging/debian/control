@@ -6,7 +6,7 @@ Standards-Version: 3.9.8
 Homepage: https://github.com/NVIDIA/nvidia-container-runtime/wiki
 Vcs-Git: https://github.com/NVIDIA/nvidia-container-runtime
 Vcs-Browser: https://github.com/NVIDIA/nvidia-container-runtime
-Build-Depends: debhelper (>= 9), golang, ca-certificates, git
+Build-Depends: debhelper (>= 9), golang
 
 Package: nvidia-container-toolkit
 Architecture: amd64
