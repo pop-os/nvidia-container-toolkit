@@ -1,4 +1,10 @@
-nvidia-container-toolkit (1.5.1-1) UNRELEASED; urgency=medium
+nvidia-container-toolkit (1.5.1-1pop1) focal; urgency=medium
+
+  * Packaging for Pop!_OS 
+
+ -- Michael Aaron Murphy <mmstick@pm.me>  Tue, 03 Aug 2021 10:29:15 +0200
+
+nvidia-container-toolkit (1.5.1-1) focal; urgency=medium
 
   * Fix bug where Docker Swarm device selection is ignored if
     NVIDIA_VISIBLE_DEVICES is also set
