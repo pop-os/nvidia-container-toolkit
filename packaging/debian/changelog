@@ -1,4 +1,4 @@
-nvidia-container-toolkit (1.5.1-1pop1) focal; urgency=medium
+nvidia-container-toolkit (1.7.0-1pop1) focal; urgency=medium
 
   * Packaging for Pop!_OS 
 
