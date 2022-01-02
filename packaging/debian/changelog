@@ -1,5 +1,6 @@
-nvidia-container-toolkit (1.7.0-1) UNRELEASED; urgency=medium
+nvidia-container-toolkit (1.7.0-1) focal; urgency=medium
 
+  [ NVIDIA CORPORATION ]
   * Promote 1.7.0~rc.1-1 to 1.7.0-1
   * Bump Golang version to 1.16.4
 
