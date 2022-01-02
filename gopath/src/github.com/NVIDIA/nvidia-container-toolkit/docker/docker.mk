@@ -17,7 +17,7 @@ AMD64_TARGETS := ubuntu20.04 ubuntu18.04 ubuntu16.04 debian10 debian9
 X86_64_TARGETS := centos7 centos8 rhel7 rhel8 amazonlinux1 amazonlinux2 opensuse-leap15.1
 PPC64LE_TARGETS := ubuntu18.04 ubuntu16.04 centos7 centos8 rhel7 rhel8
 ARM64_TARGETS := ubuntu20.04 ubuntu18.04
-AARCH64_TARGETS := centos8 rhel8
+AARCH64_TARGETS := centos8 rhel8 amazonlinux2
 
 # Define top-level build targets
 docker%: SHELL:=/bin/bash
@@ -97,11 +97,11 @@ docker-all: $(AMD64_TARGETS) $(X86_64_TARGETS) \
 
 # private centos target
 --centos%: OS := centos
---centos%: PKG_REV := $(if $(LIB_TAG),0.1.$(LIB_TAG),2)
+--centos%: PKG_REV := $(if $(LIB_TAG),0.1.$(LIB_TAG),1)
 
 # private amazonlinux target
 --amazonlinux%: OS := amazonlinux
---amazonlinux%: PKG_REV = $(if $(LIB_TAG),0.1.$(LIB_TAG).amzn$(VERSION),2.amzn$(VERSION))
+--amazonlinux%: PKG_REV := $(if $(LIB_TAG),0.1.$(LIB_TAG),1)
 
 # private opensuse-leap target
 --opensuse-leap%: OS = opensuse-leap
@@ -110,9 +110,12 @@ docker-all: $(AMD64_TARGETS) $(X86_64_TARGETS) \
 
 # private rhel target (actually built on centos)
 --rhel%: OS := centos
---rhel%: PKG_REV := $(if $(LIB_TAG),0.1.$(LIB_TAG),2)
+--rhel%: PKG_REV := $(if $(LIB_TAG),0.1.$(LIB_TAG),1)
 --rhel%: VERSION = $(patsubst rhel%-$(ARCH),%,$(TARGET_PLATFORM))
 --rhel%: ARTIFACTS_DIR = $(DIST_DIR)/rhel$(VERSION)/$(ARCH)
+
+# We allow the CONFIG_TOML_SUFFIX to be overridden.
+CONFIG_TOML_SUFFIX ?= $(OS)
 
 docker-build-%:
 	@echo "Building for $(TARGET_PLATFORM)"
@@ -124,6 +127,7 @@ docker-build-%:
 	    --build-arg GOLANG_VERSION="$(GOLANG_VERSION)" \
 	    --build-arg PKG_VERS="$(LIB_VERSION)" \
 	    --build-arg PKG_REV="$(PKG_REV)" \
+	    --build-arg CONFIG_TOML_SUFFIX="$(CONFIG_TOML_SUFFIX)" \
 	    --tag $(BUILDIMAGE) \
 	    --file $(DOCKERFILE) .
 	$(DOCKER) run \

@@ -11,24 +11,34 @@ URL: https://github.com/NVIDIA/nvidia-container-runtime
 License: Apache-2.0
 
 Source0: nvidia-container-toolkit
-Source1: config.toml
-Source2: oci-nvidia-hook
-Source3: oci-nvidia-hook.json
-Source4: LICENSE
+Source1: nvidia-container-runtime
+Source2: config.toml
+Source3: oci-nvidia-hook
+Source4: oci-nvidia-hook.json
+Source5: LICENSE
 
-Obsoletes: nvidia-container-runtime < 2.0.0, nvidia-container-runtime-hook
+Obsoletes: nvidia-container-runtime <= 3.5.0-1, nvidia-container-runtime-hook
+Provides: nvidia-container-runtime
 Provides: nvidia-container-runtime-hook
-Requires: libnvidia-container-tools >= 1.4.0, libnvidia-container-tools < 2.0.0
+Requires: libnvidia-container-tools >= %{libnvidia_container_version}, libnvidia-container-tools < 2.0.0
+
+%if 0%{?suse_version}
+Requires: libseccomp2
+Requires: libapparmor1
+%else
+Requires: libseccomp
+%endif
 
 %description
 Provides a OCI hook to enable GPU support in containers.
 
 %prep
-cp %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} .
+cp %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} .
 
 %install
 mkdir -p %{buildroot}%{_bindir}
 install -m 755 -t %{buildroot}%{_bindir} nvidia-container-toolkit
+install -m 755 -t %{buildroot}%{_bindir} nvidia-container-runtime
 
 mkdir -p %{buildroot}/etc/nvidia-container-runtime
 install -m 644 -t %{buildroot}/etc/nvidia-container-runtime config.toml
@@ -48,11 +58,42 @@ rm -f %{_bindir}/nvidia-container-runtime-hook
 %files
 %license LICENSE
 %{_bindir}/nvidia-container-toolkit
+%{_bindir}/nvidia-container-runtime
 %config /etc/nvidia-container-runtime/config.toml
 /usr/libexec/oci/hooks.d/oci-nvidia-hook
 /usr/share/containers/oci/hooks.d/oci-nvidia-hook.json
 
 %changelog
+* Wed Dec 08 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.8.0-0.1.rc.1
+- [libnvidia-container] Add support for cgroupv2
+- Release toolkit-container images from nvidia-container-toolkit repository
+
+* Tue Nov 30 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.7.0-1
+- Promote 1.7.0~rc.1-1 to 1.7.0-1
+- Bump Golang version to 1.16.4
+
+* Thu Nov 25 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.7.0-0.1.rc.1
+- Specify containerd runtime type as string in config tools to remove dependency on containerd package
+- Add supported-driver-capabilities config option to allow for a subset of all driver capabilities to be specified
+
+* Wed Nov 17 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.6.0-1
+- Promote 1.6.0-0.1.rc.3 to 1.6.0-1
+- Fix unnecessary logging to stderr instead of configured nvidia-container-runtime log file
+
+* Mon Nov 15 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.6.0-0.1.rc.3
+
+- Add supported-driver-capabilities config option to the nvidia-container-toolkit
+- Move OCI and command line checks for runtime to internal oci package
+
+* Fri Nov 05 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.6.0-0.1.rc.2
+
+- Use relative path to OCI specification file (config.json) if bundle path is not specified as an argument to the nvidia-container-runtime
+
+* Mon Sep 06 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.6.0-0.1.rc.1
+
+- Add AARCH64 package for Amazon Linux 2
+- Include nvidia-container-runtime into nvidia-container-toolkit package
+
 * Mon Jun 14 2021 NVIDIA CORPORATION <cudatools@nvidia.com> 1.5.1-1
 
 - Fix bug where Docker Swarm device selection is ignored if NVIDIA_VISIBLE_DEVICES is also set
