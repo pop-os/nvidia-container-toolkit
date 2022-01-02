@@ -1,0 +1,330 @@
+libnvidia-container (1.8.0~rc.1-1) experimental; urgency=medium
+
+  * Add new cgroup.c file based on nvcgo that supports both cgroupv1 and cgroupv2
+  * Move cgroup.c to cgroup_legacy.c in preparation for nvcgo implementation
+  * Install libnvidia-container-go.so from deps directory
+  * Fix DESTDIR for deps make target
+  * Create a go-shared library called nvcgo and wrap it in an RPC service
+  * Cleanup the nvc_shutdown() path when there is an error in RPC services
+  * Move from an nvc_context specific RPC 'driver' service to a global one
+  * Generalize RPC mechanism to be instantated multiple times
+  * Split RPC mechanism from 'driver' code into standalone RPC mechanism
+  * Add -fplan9-extensions to Makefile to allow structs to be "extended"
+  * Cleanup dead code in various components
+  * Allow build-all jobs to be triggered earlier for more parallelism in CI
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 08 Dec 2021 12:27:03 +0100
+
+libnvidia-container (1.7.0-1) UNRELEASED; urgency=medium
+
+  * Promote 1.7.0~rc.1-1 to 1.7.0-1
+  * Add replacement for versions in debian symbol file
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Tue, 30 Nov 2021 13:42:08 +0100
+
+libnvidia-container (1.7.0~rc.1-1) experimental; urgency=medium
+
+  * On Ubuntu18.04 arm64 platforms libnvidia-container-tools depends on both libnvidia-container0 and libnvidia-container1 to support Jetson
+  * Filter command line options based on libnvidia-container library version
+  * Include libnvidia-container version in CLI version output
+  * Allow for nvidia-container-cli to load libnvidia-container.so.0 dynamically on Jetson platforms
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 25 Nov 2021 11:29:43 +0100
+
+libnvidia-container (1.6.0-1) UNRELEASED; urgency=medium
+
+  * Promote 1.6.0~rc.3-1 to 1.6.0-1
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 17 Nov 2021 11:38:15 +0100
+
+libnvidia-container (1.6.0~rc.3-1) experimental; urgency=medium
+
+  * Bump nvidia-modprobe dependency to 495.44
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Sat, 13 Nov 2021 14:54:46 +0100
+
+libnvidia-container (1.6.0~rc.2-1) experimental; urgency=medium
+
+  * Fix bug that lead to unexected mount error when /proc/driver/nvidia does not exist on the host
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Fri, 05 Nov 2021 12:24:22 +0200
+
+libnvidia-container (1.6.0~rc.1-1) experimental; urgency=medium
+
+  * Add AARCH64 package for Amazon Linux 2
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 20 Sep 2021 22:24:22 +0200
+
+libnvidia-container (1.5.1-1) UNRELEASED; urgency=medium
+
+  * Promote 1.5.1-0.1.rc.1 to 1.5.1-1
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 20 Sep 2021 15:24:36 +0200
+
+libnvidia-container (1.5.1~rc.1-1) UNRELEASED; urgency=medium
+
+  * [BUGFIX] Respect root setting when resolving GSP firmware path
+  * [BUILD] Add support for SOURCE_DATE_EPOCH to specify build date
+  * Allow getpgrp syscall when SECCOMP is enabled
+  * Allow _llseek syscall when SECCOMP is enabled
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 02 Sep 2021 11:00:00 +0200
+
+libnvidia-container (1.5.0-1) UNRELEASED; urgency=medium
+
+  * Promote 1.5.0~rc.2 to 1.5.0-1
+  * [BUILD] Allow REVISION to be specified as make variable
+  * [BUILD] Only copy package files to dist folder
+  * [BUILD] Define TAG in nvc.h and remove logic to determine it automatically.
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 02 Sep 2021 09:00:00 +0200
+
+libnvidia-container (1.5.0~rc.2-1) experimental; urgency=medium
+
+  * Remove --fabric-device option to include nvlink and nvswitch devices
+  * Build: Read TAG (e.g. rc.2) from NVC_VERSION in makefile
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Tue, 17 Aug 2021 14:40:14 +0200
+
+libnvidia-container (1.5.0~rc.1-1) experimental; urgency=medium
+
+  * Add --fabric-device option to include nvlink and nvswitch devices
+  * Add support for GSP firmware
+  * WSL - Mount binaries from driver store
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Fri, 13 Aug 2021 04:34:26 -0700
+
+libnvidia-container (1.4.0-1) UNRELEASED; urgency=medium
+
+  * Mount all of /proc/.../nvidia/capabilities with --mig-{config, monitor}
+  * Add fabricmanager as a valid IPC to inject into a container
+  * Added libnvidia-nscq.so as an optional injected utility lib
+  * Add Jenkinsfile for internal CI
+  * Invoke docker make file separately
+  * WSL - Add full NVML support for WSL in the container library
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Sat, 24 Apr 2021 04:34:26 -0700
+
+libnvidia-container (1.3.3-1) UNRELEASED; urgency=medium
+
+  * Promote 1.3.3~rc.2 to 1.3.3-1
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Fri, 05 Feb 2021 02:13:49 -0700
+
+libnvidia-container (1.3.3~rc.2-1) experimental; urgency=medium
+
+  * Remove path_join() with already chrooted directory
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 03 Feb 2021 13:36:45 -0700
+
+libnvidia-container (1.3.3~rc.1-1) experimental; urgency=medium
+
+  * Pre-create MIG related nvcaps at startup
+  * Add more logging around device node creation with --load-kmods
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 03 Feb 2021 03:34:23 -0700
+
+libnvidia-container (1.3.2-1) UNRELEASED; urgency=medium
+
+  * Fix handling of /proc/PID/cgroups entries with colons in paths
+  * Add pread64 as allowed syscall for ldconfig
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 25 Jan 2021 01:48:49 -0700
+
+libnvidia-container (1.3.1-1) UNRELEASED; urgency=medium
+
+  * Honor OPT_NO_CGROUPS in nvc_device_mig_caps_mount
+  * Fix bug in resolving absolute symlinks in find_library_paths()
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 07 Dec 2020 14:55:38 -0700
+
+libnvidia-container (1.3.0-1) UNRELEASED; urgency=medium
+
+  * Promote 1.3.0~rc.1-1 to 1.3.0-1
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 16 Sep 2020 13:32:02 -0700
+
+libnvidia-container (1.3.0~rc.1-1) experimental; urgency=medium
+
+  * 2bda067f Add support to "list" command to print /dev based capabilities
+  * 3c2ad6aa Add logic to conditionally mount /dev based nvidia-capabilities
+  * 4d432175 Change default "list" command to set mig-config / mig-monitor = NULL
+  * 3ec7f3ba Fix minor bug that would not unmount paths on failure
+  * b5c0a394 Update nvidia-modprobe dependency to 450.57
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Fri, 21 Aug 2020 13:30:28 -0700
+
+libnvidia-container (1.2.0-1) UNRELEASED; urgency=medium
+
+  * Promote 1.2.0~rc.3-1 to 1.2.0-1
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 08 Jul 2020 20:44:10 -0700
+
+libnvidia-container (1.2.0~rc.3-1) experimental; urgency=medium
+
+  * 7deea6b8 WSL2 Support - Remove unnecessary umount and free
+  * 53739009 WSL2 Support - Fix error path when mounting the driver
+  * 38198a81 WSL2 Support - Fix error path in dxcore
+  * 31f5ea35 Changed email for travis.ci to kklues@nvidia.com
+  * abdd5175 Update license and copyright in packages
+  * 65827fe7 Update license clause to reflect actual licensing
+  * 77499d88 Transition Travis CI build to Ubuntu 18.04
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 01 Jul 2020 14:24:59 -0700
+
+libnvidia-container (1.2.0~rc.2-1) experimental; urgency=medium
+
+  * 4ea9b59f Update debian based dockerfiles to set distribution in changelog
+  * a57fcea5 Add 'ngx' as a new capability for a container
+  * 6f16ccd3 Allow --mig-monitor and --mig-config on machines without MIG capable GPUs
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 18 Jun 2020 21:09:59 -0700
+
+libnvidia-container (1.2.0~rc.1-1) experimental; urgency=medium
+
+  * 4263e684 Add support for Windows Subsystem for Linux (WSL2)
+  * e768f8bc Fix ability to build RC packages via TAG=rc.<num>
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 11 Jun 2020 15:12:59 -0700
+
+libnvidia-container (1.1.1-1) UNRELEASED; urgency=medium
+
+  * deeb499 Fixup deb packaging files to remove warnings
+  * 6003504 nvmlSystemGetCudaDriverVersion_v2 to nvmlSystemGetCudaDriverVersion
+  * 1ee8b60 Update centos8/rhel8 to conditionally set appropriate CFLAGS and LDLIBS
+  * d746370 Add smoke test to verify functioning build for all OSs on amd64/x86_64
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Tue, 19 May 2020 12:05:32 -0700
+
+libnvidia-container (1.1.0-1) UNRELEASED; urgency=medium
+
+  * b217c6ad Update build system to support multi-arch builds
+  * 1ddcdfc1 Add support for MIG (Milti-Instance-GPUs)
+  * ddae363a Add libnvidia-allocator.so as a compute-lib
+  * 6ed0f129 Add option to not use pivot_root
+  * e18e9b7a Allow devices to be identified by PCI bus ID
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Fri, 15 May 2020 12:05:32 -0700
+
+libnvidia-container (1.0.7-1) UNRELEASED; urgency=medium
+
+  * 8d90918a Add Raytracing library
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 11 Nov 2019 13:23:58 -0700
+
+libnvidia-container (1.0.6-1) UNRELEASED; urgency=medium
+
+  * b6aff41 Update error messages for CUDA version requirements
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Fri, 13 Sep 2019 15:38:16 -0700
+
+libnvidia-container (1.0.5-1) UNRELEASED; urgency=medium
+
+  * 688495e Add Opensuse15.1 support
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 04 Sep 2019 10:50:40 -0700
+
+libnvidia-container (1.0.4-1) UNRELEASED; urgency=medium
+
+  * 61bfaf38 Update DSL to output the first element instead of the last in case of failure
+  * 5ce32c6c Add initial support for Optix
+  * acc38a22 Fix execveat typo
+  * b5e491b1 arm64: Add support for AARCH64 architecture
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 21 Aug 2019 16:48:40 -0700
+
+libnvidia-container (1.0.3-1) UNRELEASED; urgency=medium
+
+  * b9545d7 Add support for Vulkan
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 18 Jul 2019 13:34:30 -0700
+
+libnvidia-container (1.0.2-1) UNRELEASED; urgency=medium
+
+  * 4045013 Adds support for libnvidia-opticalflow
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 04 Feb 2019 15:24:12 -0700
+
+libnvidia-container (1.0.1-1) UNRELEASED; urgency=medium
+
+  * deccb28 Allow yet more syscalls in ldconfig
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 14 Jan 2019 17:52:52 -0700
+
+libnvidia-container (1.0.0-1) UNRELEASED; urgency=medium
+
+  * 35a9f27 Add support for CUDA forward compatibility
+  * ebed710 Add device brand to the device informations and requirements
+  * a141a7a Handle 32-bit PCI domains in procfs
+  * 391c4b6 Preload glibc libraries before switching root
+  * bcf69c6 Bump libtirpc to 1.1.4
+  * 30aec17 Bump nvidia-modprobe-utils to 396.51
+  * d05745f Bump the address space limits for ldconfig
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 20 Sep 2018 11:52:52 -0700
+
+libnvidia-container (1.0.0~rc.2-1) UNRELEASED; urgency=medium
+
+  * 7ea554a Rework capabilities to support more unprivileged use-cases
+  * f06cbbb Fix driver process DEATHSIG teardown
+  * 931bd4f Allow more syscalls in ldconfig
+  * a0644ea Fix off-by-one error
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 11 Jun 2018 13:39:47 -0700
+
+libnvidia-container (1.0.0~rc.1-1) UNRELEASED; urgency=medium
+
+  * 4d43665 Bump nvidia-modprobe-utils to 396.18
+  * d8338a6 Bump libtirpc to 1.0.3
+  * cef6c8f Add execveat to the list of allowed syscalls
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Thu, 26 Apr 2018 15:35:29 -0700
+
+libnvidia-container (1.0.0~beta.1-1) UNRELEASED; urgency=medium
+
+  * 6822b13 Bump nvidia-modprobe-utils to 390.25
+  * 8245f6c Slightly improve RPC error messages
+  * 9398d41 Add support for display capability
+  * 57a0dd5 Increase driver service timeout from 1s to 10s
+  * e48a0d4 Add device minor to the CLI info command
+  * 019fdc1 Add support for custom driver root directory
+  * b78a28c Add ppc64le support
+  * 41656bf Add --ldcache option to the CLI
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 05 Mar 2018 16:10:35 -0800
+
+libnvidia-container (1.0.0~alpha.3-1) UNRELEASED; urgency=medium
+
+  * d268f8f Improve error message if driver installed in the container
+  * 3fdac29 Add optional support for libelf from the elfutils project
+  * 584bca5 Remove top directory bind mounts to prevent EXDEV errors
+  * c6dc820 Add info command to nvidia-container-cli
+  * 44b74ee Add device model to the device informations
+  * cbdd58f Strip RPC prefix from error messages
+  * d4ee216 Rework the CLI list command
+  * b0c4865 Improve the --userspec CLI option and rename it to --user
+  * e6fa331 Refactor the CLI and split it into multiple files
+  * fa9853b Bump nvidia-modprobe-utils to 387.34
+  * 7888296 Move the driver capabilities to the container options
+  * ea2f780 Add support for EGL device isolation
+  * b5bffa3 Fix driver procfs remount to work with unpatched kernels
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Wed, 10 Jan 2018 16:01:11 -0800
+
+libnvidia-container (1.0.0~alpha.2-1) UNRELEASED; urgency=medium
+
+  * b80e4b6 Relax some requirement constraints
+  * 3cd1bb6 Handle 32-bit PCI domains
+  * 6c67a19 Add support for device architecture requirement
+  * 7584e96 Filter NVRM proc filesystem based on visible devices
+  * 93c46e1 Prevent the driver process from triggering MPS
+  * fe4925e Reject invalid device identifier "GPU-"
+  * dabef1c Do not change bind mount attributes on top-level directories
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Mon, 30 Oct 2017 14:03:39 -0700
+
+libnvidia-container (1.0.0~alpha.1-1) UNRELEASED; urgency=medium
+
+  * Initial release
+
+ -- NVIDIA CORPORATION <cudatools@nvidia.com>  Tue, 05 Sep 2017 14:31:33 -0700
