@@ -5,7 +5,7 @@
 
 override_dh_auto_clean:
 	dh_auto_clean
-	ischroot || bash vendor.sh
+	# ischroot || bash vendor.sh
 
 override_dh_auto_test:
 
@@ -13,4 +13,4 @@ override_dh_auto_build:
 	cp config/config.toml.ubuntu config.toml
 	env GOCACHE="$(shell pwd)/gocache" \
 		GOPATH="$(shell pwd)/gopath" \
-		GO111MODULE=off make binary
+		GO111MODULE=off make binaries
