@@ -1,0 +1,25 @@
+Source: nvidia-container-toolkit
+Section: utils
+Priority: optional
+Maintainer: NVIDIA CORPORATION <cudatools@nvidia.com>
+Standards-Version: 3.9.8
+Homepage: https://github.com/NVIDIA/nvidia-container-toolkit
+Vcs-Git: https://github.com/NVIDIA/nvidia-container-toolkit
+Vcs-Browser: https://github.com/NVIDIA/nvidia-container-toolkit
+Build-Depends: debhelper (>= 9), golang, ca-certificates, tree
+
+Package: nvidia-container-toolkit
+Architecture: amd64
+Depends: ${misc:Depends}, nvidia-container-toolkit-base, libnvidia-container-tools, libnvidia-container-tools (<< 2.0.0), libseccomp2
+Breaks: nvidia-container-runtime (<= 3.5.0-1), nvidia-container-runtime-hook
+Replaces: nvidia-container-runtime (<= 3.5.0-1), nvidia-container-runtime-hook
+Description: NVIDIA Container toolkit
+ Provides tools and utilities to enable GPU support in containers.
+
+Package: nvidia-container-toolkit-base
+Architecture: amd64
+Depends: ${misc:Depends}
+Breaks: nvidia-container-runtime (<= 3.5.0-1), nvidia-container-runtime-hook, nvidia-container-toolkit (<= 1.10.0-1)
+Replaces: nvidia-container-runtime (<= 3.5.0-1), nvidia-container-runtime-hook
+Description: NVIDIA Container Toolkit Base
+ Provides tools such as the NVIDIA Container Runtime and NVIDIA Container Toolkit CLI to enable GPU support in containers.
