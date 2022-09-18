@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	if ! ischroot; then \
+		dh_auto_clean; \
+		bash vendor.sh; \
+	fi
+	# ischroot || (dh_auto_clean && bash vendor.sh)
+
+override_dh_auto_test:
+
+override_dh_auto_build:
+	tar pxf vendor.tar
+	cp config/config.toml.ubuntu config.toml
+	tree -d $(shell pwd)/gocache
+	env GOCACHE="$(shell pwd)/gocache" \
+		GOPATH="$(shell pwd)/gopath" \
+		make binaries
