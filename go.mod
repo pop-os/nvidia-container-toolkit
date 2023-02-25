@@ -19,6 +19,6 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190809123943-df4f5c81cb3b // indirect
 	gitlab.com/nvidia/cloud-native/go-nvlib v0.0.0-20220725232003-c7f47cb02a33
 	golang.org/x/mod v0.5.0
-	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9
+	golang.org/x/sys v0.1.0
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )
